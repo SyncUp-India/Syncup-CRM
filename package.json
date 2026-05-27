@@ -1,0 +1,24 @@
+{
+  "name": "syncup-crm",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "lint": "turbo run lint",
+    "db:migrate": "cd packages/api && npx prisma migrate dev",
+    "db:generate": "cd packages/api && npx prisma generate",
+    "db:seed": "cd packages/api && npx ts-node src/seed.ts"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

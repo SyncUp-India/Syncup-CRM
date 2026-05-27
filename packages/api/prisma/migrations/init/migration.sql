@@ -1,0 +1,2 @@
+-- This is a placeholder. Run `prisma migrate dev` to generate the actual migration.
+-- Ensure your DATABASE_URL is set correctly in .env before running migrations.

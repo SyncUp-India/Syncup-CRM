@@ -1,0 +1,183 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  super_admin
+  lead
+  associate
+}
+
+enum LeadType {
+  inbound
+  outbound
+  cold
+}
+
+enum LeadStage {
+  DNP
+  callback_requested
+  followup_required
+  meeting_booked
+  lead_onboarded
+}
+
+enum FollowupNumber {
+  followup_1
+  followup_2
+  followup_3
+}
+
+enum ActivityAction {
+  stage_changed
+  note_added
+  call_attempt
+  email_sent
+  followup_scheduled
+  followup_completed
+  lead_created
+  lead_assigned
+  field_updated
+}
+
+enum NotificationType {
+  followup_reminder
+  lead_assigned
+  meeting_booked
+  general
+}
+
+model User {
+  id            String    @id @default(uuid())
+  name          String
+  email         String    @unique
+  password      String
+  role          UserRole  @default(associate)
+  pushToken     String?
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  leadsAssigned Lead[]       @relation("AssignedTo")
+  activities    Activity[]
+  followups     Followup[]
+  notifications Notification[]
+  auditLogs     AuditLog[]
+
+  @@map("users")
+}
+
+model Lead {
+  id           String     @id @default(uuid())
+  name         String
+  designation  String?
+  company      String
+  phone        String
+  email        String?
+  leadType     LeadType   @default(cold)
+  stage        LeadStage  @default(DNP)
+  assignedToId String?
+  assignedTo   User?      @relation("AssignedTo", fields: [assignedToId], references: [id])
+  source       String     @default("manual")
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  activities Activity[]
+  followups  Followup[]
+
+  @@index([stage])
+  @@index([leadType])
+  @@index([assignedToId])
+  @@index([phone])
+  @@index([email])
+  @@map("leads")
+}
+
+model Activity {
+  id        String         @id @default(uuid())
+  leadId    String
+  lead      Lead           @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  userId    String?
+  user      User?          @relation(fields: [userId], references: [id])
+  action    ActivityAction
+  details   String
+  metadata  Json?
+  createdAt DateTime       @default(now())
+
+  @@index([leadId])
+  @@map("activities")
+}
+
+model Followup {
+  id             String         @id @default(uuid())
+  leadId         String
+  lead           Lead           @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  userId         String
+  user           User           @relation(fields: [userId], references: [id])
+  followupNumber FollowupNumber
+  scheduledAt    DateTime
+  completedAt    DateTime?
+  notes          String?
+  notified       Boolean        @default(false)
+  createdAt      DateTime       @default(now())
+
+  @@index([leadId])
+  @@index([scheduledAt])
+  @@index([notified, scheduledAt])
+  @@map("followups")
+}
+
+model Notification {
+  id        String           @id @default(uuid())
+  userId    String
+  user      User             @relation(fields: [userId], references: [id])
+  title     String
+  body      String
+  type      NotificationType @default(general)
+  read      Boolean          @default(false)
+  data      Json?
+  createdAt DateTime         @default(now())
+
+  @@index([userId, read])
+  @@map("notifications")
+}
+
+model EmailTemplate {
+  id        String    @id @default(uuid())
+  stage     LeadStage @unique
+  subject   String
+  body      String    @db.Text
+  updatedAt DateTime  @updatedAt
+
+  @@map("email_templates")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  entityType String
+  entityId   String
+  action     String
+  oldValues  Json?
+  newValues  Json?
+  createdAt  DateTime @default(now())
+
+  @@index([entityType, entityId])
+  @@index([userId])
+  @@map("audit_logs")
+}
+
+model Setting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
+}

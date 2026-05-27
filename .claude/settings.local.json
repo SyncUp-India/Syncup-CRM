@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(npm install *)",
+      "Bash(mkdir -p \"/Users/ayushpatel/Claude code - CRM/.claude\")",
+      "Bash(node server.js)",
+      "Bash(curl -s http://localhost:4000/api/health)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(xargs kill -9)",
+      "Bash(curl -s \"http://localhost:4000/api/leads?limit=50\" -H \"Authorization: Bearer mock-token-super-admin\")",
+      "Bash(node -e \"const d=require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\); const j=JSON.parse\\(d\\); const copies=j.data?.filter\\(l=>l.name.includes\\('Copy'\\)\\); console.log\\(JSON.stringify\\(copies?.map\\(l=>l.name+' | '+l.stage\\)\\)\\);\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(list\\(d.keys\\(\\)\\)\\); copies=[l for l in d.get\\('data',{}\\).get\\('data',[]\\) if 'Copy' in l.get\\('name',''\\)]; print\\(copies\\)\")",
+      "Bash(node -e \"const jwt=require\\('jsonwebtoken'\\); const token=jwt.sign\\({id:'u1',email:'admin@syncup.in',role:'super_admin',name:'Super Admin'},'demo-secret',{expiresIn:86400}\\); console.log\\(token\\);\")",
+      "Bash(curl -s http://localhost:4000/api/leads?limit=50 -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InUxIiwiZW1haWwiOiJhZG1pbkBzeW5jdXAuaW4iLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJuYW1lIjoiU3VwZXIgQWRtaW4iLCJpYXQiOjE3Nzk4ODE4MzUsImV4cCI6MTc3OTk2ODIzNX0.Au5AJdtJNxzEEryrVXwrfo6wPtK3P7JFPR27sPDdzDI')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); leads=d.get\\('data',[]\\); copies=[l for l in leads if 'Copy' in l.get\\('name',''\\)]; print\\('Total leads:', len\\(leads\\)\\); print\\('Copies:', [l['name']+' | '+l['stage'] for l in copies]\\)\")",
+      "Bash(curl -s -X POST http://localhost:4000/api/leads/l3/duplicate -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InUxIiwiZW1haWwiOiJhZG1pbkBzeW5jdXAuaW4iLCJyb2xlIjoic3VwZXJfYWRtaW4iLCJuYW1lIjoiU3VwZXIgQWRtaW4iLCJpYXQiOjE3Nzk4ODE4MzUsImV4cCI6MTc3OTk2ODIzNX0.Au5AJdtJNxzEEryrVXwrfo6wPtK3P7JFPR27sPDdzDI' -H 'Content-Type: application/json')",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}

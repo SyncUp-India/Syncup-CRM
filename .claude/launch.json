@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "syncup-web",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "/Users/ayushpatel/Claude code - CRM/packages/web",
+      "port": 3000
+    },
+    {
+      "name": "syncup-api-mock",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["server.js"],
+      "cwd": "/Users/ayushpatel/Claude code - CRM/packages/api-mock",
+      "port": 4000
+    }
+  ]
+}

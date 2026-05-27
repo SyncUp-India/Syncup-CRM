@@ -1,0 +1,38 @@
+export const colors = {
+  light: {
+    bg: '#ffffff',
+    card: '#ffffff',
+    cardBorder: '#e5e5e5',
+    text: '#000000',
+    textSecondary: '#737373',
+    textMuted: '#a3a3a3',
+    inputBg: '#f5f5f5',
+    inputBorder: '#e5e5e5',
+    accent: '#f5f5f5',
+    primary: '#000000',
+    primaryFg: '#ffffff',
+    destructive: '#ef4444',
+    success: '#22c55e',
+    warning: '#f59e0b',
+    info: '#3b82f6',
+  },
+  dark: {
+    bg: '#0a0a0a',
+    card: '#18181b',
+    cardBorder: '#27272a',
+    text: '#fafafa',
+    textSecondary: '#a1a1aa',
+    textMuted: '#71717a',
+    inputBg: '#27272a',
+    inputBorder: '#3f3f46',
+    accent: '#1c1c1e',
+    primary: '#ffffff',
+    primaryFg: '#000000',
+    destructive: '#ef4444',
+    success: '#22c55e',
+    warning: '#f59e0b',
+    info: '#3b82f6',
+  },
+};
+
+export type Colors = typeof colors.light;
