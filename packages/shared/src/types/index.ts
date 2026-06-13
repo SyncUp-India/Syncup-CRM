@@ -7,8 +7,7 @@ export type LeadStage =
   | 'callback_requested'
   | 'followup_required'
   | 'meeting_booked'
-  | 'lead_onboarded'
-  | 'not_interested';
+  | 'lead_onboarded';
 
 export type FollowupNumber = 'followup_1' | 'followup_2' | 'followup_3';
 
