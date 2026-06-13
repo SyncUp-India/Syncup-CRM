@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "turbo run dev",
+    "dev": "kill-port 4000 && turbo run build --filter=@syncup/shared && turbo run dev --filter=!@syncup/shared --filter=!@syncup/api-mock",
     "build": "turbo run build",
     "start": "turbo run start",
     "lint": "turbo run lint",
@@ -15,10 +15,12 @@
     "db:seed": "cd packages/api && npx ts-node src/seed.ts"
   },
   "devDependencies": {
+    "kill-port": "^2.0.1",
     "turbo": "^2.3.3",
     "typescript": "^5.7.2"
   },
   "engines": {
     "node": ">=20.0.0"
-  }
+  },
+  "packageManager": "npm@11.13.0"
 }

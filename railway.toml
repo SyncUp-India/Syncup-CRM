@@ -1,7 +1,8 @@
 [build]
 builder = "nixpacks"
+buildCommand = "npm install && cd packages/api && npx prisma generate && npx tsc"
 
 [deploy]
-startCommand = "node packages/api-mock/server.js"
+startCommand = "node packages/api/dist/index.js"
 healthcheckPath = "/api/health"
 restartPolicyType = "on_failure"
