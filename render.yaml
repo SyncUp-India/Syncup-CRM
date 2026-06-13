@@ -2,7 +2,7 @@ services:
   - type: web
     name: syncup-crm-api
     runtime: node
-    buildCommand: npm install && cd packages/api && npx prisma generate && npx tsc
+    buildCommand: npm install && cd packages/shared && npm run build && cd ../api && npx prisma generate && npx tsc
     startCommand: node packages/api/dist/index.js
     healthCheckPath: /api/health
     envVars:
