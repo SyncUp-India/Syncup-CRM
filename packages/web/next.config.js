@@ -7,9 +7,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  experimental: {
-    optimizePackageImports: ['recharts', 'lucide-react'],
-  },
 };
 
 module.exports = nextConfig;
