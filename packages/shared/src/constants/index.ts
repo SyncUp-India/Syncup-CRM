@@ -6,7 +6,6 @@ export const LEAD_STAGES: LeadStage[] = [
   'followup_required',
   'meeting_booked',
   'lead_onboarded',
-  'not_interested',
 ];
 
 export const LEAD_STAGE_LABELS: Record<LeadStage, string> = {
@@ -15,7 +14,6 @@ export const LEAD_STAGE_LABELS: Record<LeadStage, string> = {
   followup_required: 'Followup Required',
   meeting_booked: 'Meeting Booked',
   lead_onboarded: 'Lead Onboarded',
-  not_interested: 'Not Interested',
 };
 
 export const LEAD_TYPES: LeadType[] = ['inbound', 'outbound', 'cold'];
@@ -44,7 +42,6 @@ export const STAGE_EMAIL_SUBJECT: Record<LeadStage, string> = {
   followup_required: "Following up on our conversation",
   meeting_booked: "Your meeting is confirmed",
   lead_onboarded: "Welcome aboard",
-  not_interested: "Sorry to see you go",
 };
 
 export const STAGE_WHATSAPP_MESSAGE: Record<LeadStage, string> = {
@@ -53,7 +50,6 @@ export const STAGE_WHATSAPP_MESSAGE: Record<LeadStage, string> = {
   followup_required: "Hi {{name}}, following up on our conversation. Do you have any questions we can help with?",
   meeting_booked: "Hi {{name}}, your meeting is confirmed! Looking forward to connecting with you.",
   lead_onboarded: "Hi {{name}}, welcome aboard! We're excited to work with you. 🎉",
-  not_interested: "Hi {{name}}, we understand. Feel free to reach out whenever you're ready. We're always here to help!",
 };
 
 export const CSV_REQUIRED_COLUMNS = ['Name', 'Company', 'Phone'];
